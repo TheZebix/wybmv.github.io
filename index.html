@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? 💕</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💕</text></svg>">
+    
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+        }
+        .handwriting {
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.05); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.05); }
+        }
+        
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+        
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .float-anim {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .heart-beat {
+            animation: heartbeat 2s ease-in-out infinite;
+        }
+        
+        .wiggle-anim {
+            animation: wiggle 2s ease-in-out infinite;
+        }
+        
+        .falling-heart {
+            position: fixed;
+            pointer-events: none;
+            animation: fall linear forwards;
+            z-index: 5;
+        }
+        
+        .running-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .btn-shadow {
+            box-shadow: 0 4px 20px rgba(255, 182, 193, 0.4), 0 0 0 3px rgba(255, 255, 255, 0.5) inset;
+        }
+        
+        .no-btn-shadow {
+            box-shadow: 0 4px 15px rgba(200, 200, 200, 0.4);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fce7f3; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f9a8d4; 
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-pink-100 via-rose-50 to-pink-200 min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+
+    <!-- Floating Background Hearts -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden" id="bgHearts">
+        <div class="absolute top-10 left-[10%] text-pink-200 text-6xl opacity-60 float-anim" style="animation-delay: 0s;">💕</div>
+        <div class="absolute top-20 right-[15%] text-rose-200 text-5xl opacity-50 float-anim" style="animation-delay: 0.5s;">💖</div>
+        <div class="absolute bottom-32 left-[20%] text-pink-300 text-7xl opacity-40 float-anim" style="animation-delay: 1s;">💗</div>
+        <div class="absolute bottom-20 right-[10%] text-rose-300 text-6xl opacity-50 float-anim" style="animation-delay: 1.5s;">💝</div>
+        <div class="absolute top-1/3 left-[5%] text-pink-200 text-4xl opacity-30 float-anim" style="animation-delay: 2s;">💓</div>
+        <div class="absolute top-1/4 right-[8%] text-rose-200 text-5xl opacity-40 float-anim" style="animation-delay: 2.5s;">💘</div>
+    </div>
+
+    <!-- Main Card -->
+    <div class="glass-effect rounded-[2.5rem] shadow-2xl p-6 sm:p-10 max-w-lg w-full text-center relative z-10 border-4 border-white/50 transform hover:scale-[1.02] transition-transform duration-500">
+        
+        <!-- Decorative corner hearts -->
+        <div class="absolute -top-3 -left-3 text-4xl animate-bounce">💕</div>
+        <div class="absolute -top-3 -right-3 text-4xl animate-bounce" style="animation-delay: 0.2s;">💖</div>
+        <div class="absolute -bottom-3 -left-3 text-4xl animate-bounce" style="animation-delay: 0.4s;">💗</div>
+        <div class="absolute -bottom-3 -right-3 text-4xl animate-bounce" style="animation-delay: 0.6s;">💝</div>
+
+        <!-- Cute Image Container -->
+        <div class="mb-8 flex justify-center relative">
+            <div class="absolute inset-0 bg-pink-300 rounded-full blur-xl opacity-20 animate-pulse"></div>
+            <img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" 
+                 alt="Cute kitten" 
+                 class="w-56 h-56 sm:w-64 sm:h-64 object-cover rounded-[2rem] float-anim shadow-xl border-4 border-white relative z-10"
+                 onerror="this.src='http://static.photos/animals/640x360/77'; this.onerror=function(){this.src='http://static.photos/nature/640x360/42'}">
+            
+            <!-- Floating mini hearts around image -->
+            <div class="absolute top-0 right-0 text-2xl animate-ping">✨</div>
+            <div class="absolute bottom-4 left-0 text-2xl animate-pulse">🌸</div>
+        </div>
+
+        <!-- Heading -->
+        <h1 class="handwriting text-5xl sm:text-6xl text-pink-600 mb-3 heart-beat drop-shadow-sm">
+            Will you be my Valentine?
+        </h1>
+        
+
+        <!-- Buttons Container -->
+        <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 relative min-h-[80px] items-center">
+            
+            <!-- YES Button -->
+            <button id="yesBtn" class="group relative bg-gradient-to-r from-pink-400 to-rose-400 hover:from-pink-500 hover:to-rose-500 text-white font-bold py-4 px-10 rounded-full btn-shadow transform hover:scale-110 transition-all duration-300 text-xl border-2 border-white/30 overflow-hidden">
+                <span class="relative z-10 flex items-center gap-2">
+                    TAK 💖
+                </span>
+                <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+            </button>
+            
+            <!-- NO Button (The tricky one) -->
+            <button id="noBtn" class="running-btn bg-gradient-to-r from-gray-300 to-gray-400 hover:from-gray-400 hover:to-gray-500 text-gray-700 font-bold py-4 px-10 rounded-full no-btn-shadow text-xl border-2 border-white/50 relative z-20">
+                NIE 💔
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal Popup -->
+    <div id="modal" class="fixed inset-0 bg-black/40 hidden items-center justify-center z-50 backdrop-blur-sm transition-opacity duration-300 opacity-0">
+        <div class="bg-white rounded-[2rem] p-8 max-w-md w-full mx-4 text-center shadow-2xl border-4 border-pink-200 transform scale-90 transition-transform duration-300 relative" id="modalContent">
+            
+            <!-- Crying face -->
+            <div class="text-7xl mb-4 animate-pulse">😢</div>
+            
+            <h2 class="handwriting text-4xl text-pink-600 mb-3">Jesteś pewna???</h2>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4 relative min-h-[60px] items-center">
+                <!-- This button runs away (means "Yes I'm sure I want to reject") -->
+                <button id="modalYes" class="running-btn bg-red-400 hover:bg-red-500 text-white font-bold py-3 px-6 rounded-full shadow-lg border-2 border-white/50 text-sm">
+                    Tak 😭
+                </button>
+                
+                <!-- This button stays still (means "No wait, I want to say yes!") -->
+                <button id="modalNo" class="bg-pink-400 hover:bg-pink-500 text-white font-bold py-3 px-6 rounded-full shadow-lg transform hover:scale-105 transition-all border-2 border-white/50">
+                    Nie! 🥺💕
+                </button>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Rejection Screen -->
+    <div id="rejection" class="fixed inset-0 bg-gradient-to-br from-gray-200 via-gray-100 to-gray-300 hidden items-center justify-center z-50 flex-col p-4">
+        <div class="text-8xl mb-6 animate-pulse">💔😭💔</div>
+        <h2 class="handwriting text-5xl sm:text-6xl text-gray-600 mb-4 text-center drop-shadow-lg">
+            My heart is broken...
+        </h2>
+        <p class="text-lg sm:text-xl text-gray-500 font-bold mb-8 text-center">Are you sure you want to leave me sad? 🥺</p>
+        
+        <div class="flex gap-4">
+            <button id="changedMindBtn" class="bg-pink-400 hover:bg-pink-500 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all border-2 border-white/50 flex items-center gap-2">
+                Zmieniłam zdanie! 💕
+            </button>
+            <button onclick="location.reload()" class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all border-2 border-white/50">
+                Jeszcze raz 🔄
+            </button>
+        </div>
+    </div>
+
+    <!-- Success Screen -->
+    <div id="success" class="fixed inset-0 bg-gradient-to-br from-pink-200 via-rose-100 to-pink-300 hidden items-center justify-center z-50 flex-col p-4">
+        <div class="text-8xl mb-6 animate-bounce">🎉💕🎊</div>
+        <h2 class="handwriting text-6xl sm:text-7xl text-pink-600 mb-4 text-center drop-shadow-lg animate-pulse">
+            Wiedziałem! 😎😙
+        </h2>
+        
+        <div class="relative">
+            <div class="text-9xl animate-pulse">💘</div>
+            <div class="absolute -top-4 -right-4 text-4xl animate-ping">✨</div>
+            <div class="absolute -bottom-4 -left-4 text-4xl animate-ping" style="animation-delay: 0.5s;">⭐</div>
+        </div>
+        
+        <button onclick="location.reload()" class="mt-12 bg-white text-pink-500 font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all border-2 border-pink-200">
+            Jeszcze raz 🔄
+        </button>
+    </div>
+
+    <script>
+        // Elements
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const modal = document.getElementById('modal');
+        const modalContent = document.getElementById('modalContent');
+        const modalYes = document.getElementById('modalYes');
+        const modalNo = document.getElementById('modalNo');
+        const success = document.getElementById('success');
+        const rejection = document.getElementById('rejection');
+        const changedMindBtn = document.getElementById('changedMindBtn');
+
+        // Discord Webhook URL
+        const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1472279343349895390/f-bJH4D2WeiiXpD3Auv7R-UsCmuqUpaDNe42-L1565-7FX_f6RNlduI-ooAGbtA2Xjbj';
+
+        // Track attempts to make it progressively harder
+        let noAttempts = 0;
+
+        // Function to send Discord webhook notification
+        function sendDiscordNotification() {
+            const payload = {
+                content: `💕 **Valentine Alert!** 💕\nSomeone just said YES to being your Valentine! 🎉💖\n⏰ Time: ${new Date().toLocaleString()}`,
+                username: "Valentine Notifier 💌",
+                avatar_url: "https://cdn-icons-png.flaticon.com/512/2922/2922506.png"
+            };
+
+            fetch(DISCORD_WEBHOOK_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload)
+            }).catch(err => console.log('Webhook error:', err));
+        }
+
+        // Function to move button to random position within viewport
+        function moveButtonRandomly(button, isInModal = false) {
+            const rect = button.getBoundingClientRect();
+            const maxX = isInModal ? 200 : window.innerWidth - rect.width - 40;
+            const maxY = isInModal ? 100 : window.innerHeight - rect.height - 40;
+            
+            let x, y;
+            
+            if (isInModal) {
+                // For modal, move within the modal content area
+                x = (Math.random() * 200) - 100;
+                y = (Math.random() * 100) - 50;
+                button.style.transform = `translate(${x}px, ${y}px)`;
+            } else {
+                // For main button, move anywhere on screen but keep in bounds
+                x = Math.random() * (window.innerWidth - rect.width - 100) + 50;
+                y = Math.random() * (window.innerHeight - rect.height - 100) + 50;
+                button.style.position = 'fixed';
+                button.style.left = x + 'px';
+                button.style.top = y + 'px';
+                button.style.zIndex = '1000';
+            }
+            
+            // Add rotation for extra cuteness/chaos
+            const rotation = Math.random() * 20 - 10;
+            button.style.transform += ` rotate(${rotation}deg)`;
+        }
+
+        // Desktop: NO button runs away on hover
+        noBtn.addEventListener('mouseenter', function() {
+            noAttempts++;
+            // Make it run further away each time
+            const distance = Math.min(noAttempts * 50, 300);
+            const x = (Math.random() - 0.5) * distance * 2;
+            const y = (Math.random() - 0.5) * distance * 2;
+            
+            this.style.transform = `translate(${x}px, ${y}px) rotate(${Math.random() * 20 - 10}deg)`;
+            
+            // If they've tried too many times, show modal anyway to frustrate them more
+            if (noAttempts > 5) {
+                setTimeout(() => {
+                    this.click();
+                }, 500);
+            }
+        });
+
+        // Mobile: NO button moves when touched
+        noBtn.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            moveButtonRandomly(this);
+        });
+
+        // If they somehow click NO on main screen
+        noBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            showModal();
+        });
+
+        // Modal "Yes I'm sure" button (the rejection confirmation) - runs away aggressively
+        modalYes.addEventListener('mouseenter', function() {
+            moveButtonRandomly(this, true);
+        });
+        
+        modalYes.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            moveButtonRandomly(this, true);
+        });
+
+        // If they actually click "Yes I'm sure" (rejection)
+        modalYes.addEventListener('click', function() {
+            showRejection();
+        });
+
+        // Modal "No wait" button (they want to accept) - easy to click
+        modalNo.addEventListener('click', function() {
+            showSuccess();
+        });
+
+        // Changed my mind button on rejection screen
+        changedMindBtn.addEventListener('click', function() {
+            hideRejection();
+            showSuccess();
+        });
+
+        // Main YES button
+        yesBtn.addEventListener('click', showSuccess);
+
+        function showModal() {
+            modal.classList.remove('hidden');
+            // Trigger reflow for animation
+            void modal.offsetWidth;
+            modal.classList.remove('opacity-0');
+            modalContent.classList.remove('scale-90');
+            modalContent.classList.add('scale-100');
+        }
+
+        function hideModal() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-90');
+            
+            // Reset button positions
+            modalYes.style.transform = '';
+            noBtn.style.transform = '';
+            noBtn.style.position = '';
+            noBtn.style.left = '';
+            noBtn.style.top = '';
+            noBtn.style.zIndex = '';
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        function showRejection() {
+            hideModal();
+            setTimeout(() => {
+                rejection.classList.remove('hidden');
+                rejection.classList.add('flex');
+            }, 300);
+        }
+
+        function hideRejection() {
+            rejection.classList.add('hidden');
+            rejection.classList.remove('flex');
+        }
+
+        function showSuccess() {
+            // Send Discord notification
+            sendDiscordNotification();
+            
+            hideModal();
+            setTimeout(() => {
+                success.classList.remove('hidden');
+                success.classList.add('flex');
+                createConfetti();
+                startFallingHearts();
+            }, 300);
+        }
+
+        // Create confetti effect
+        function createConfetti() {
+            const colors = ['#ff69b4', '#ff1493', '#ffb6c1', '#ffc0cb', '#ff69b4'];
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.style.position = 'fixed';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '-10px';
+                    confetti.style.width = Math.random() * 10 + 5 + 'px';
+                    confetti.style.height = Math.random() * 10 + 5 + 'px';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.borderRadius = '50%';
+                    confetti.style.zIndex = '100';
+                    confetti.style.pointerEvents = 'none';
+                    confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 5000);
+                }, i * 50);
+            }
+        }
+
+        // Start falling hearts animation for success screen
+        function startFallingHearts() {
+            const hearts = ['💕', '💖', '💗', '💝', '💘', '🌸'];
+            setInterval(() => {
+                if (!success.classList.contains('hidden')) {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+                    heart.className = 'falling-heart text-2xl sm:text-4xl';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => heart.remove(), 6000);
+                }
+            }, 300);
+        }
+
+        // Close modal if clicking outside
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                hideModal();
+            }
+        });
+
+        // Prevent right click to make it harder to inspect and cheat 😉
+        document.addEventListener('contextmenu', function(e) {
+            if (e.target === noBtn || e.target === modalYes) {
+                e.preventDefault();
+                alert('No cheating! You have to click it properly! 🥺💕');
+            }
+        });
+
+        // Keyboard shortcut: Escape closes modal
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                hideModal();
+            }
+        });
+    </script>
+</body>
+</html>
